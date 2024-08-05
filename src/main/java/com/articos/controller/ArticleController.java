@@ -32,7 +32,7 @@ public class ArticleController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<ArticleIdDto> get(@PathVariable UUID id) {
-        ArticleModel articleModel = articleService.findById(id).orElse(null);
+        ArticleModel articleModel = articleService.findById(id).orElseThrow();
         ArticleIdDto articleIdDto = new ArticleIdDto(articleModel.getId() ,articleModel.getTitle(), articleModel.getContent(), articleModel.getAuthor().getId());
         return ResponseEntity.ok(articleIdDto);
     }
