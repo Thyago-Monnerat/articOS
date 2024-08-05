@@ -1,0 +1,1 @@
+web: java -jar build/libs/ArticOS-0.0.1-SNAPSHOT.jar
