@@ -2,15 +2,11 @@ package com.articos.controller;
 
 import com.articos.dto.ArticleDto;
 import com.articos.dto.UserDto;
-import com.articos.model.ArticleModel;
 import com.articos.model.UserModel;
 import com.articos.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +39,6 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAll() {
         List<UserDto> userDtos = new ArrayList<>();
 
-
         for(UserModel u : userService.getAll()){
             List<ArticleDto> articleDtos = new ArrayList<>();
             u.getArticles().forEach(aDto -> articleDtos.add(new ArticleDto(aDto.getTitle(), aDto.getContent(), u.getId())));
@@ -54,11 +49,14 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<UserModel> add(@RequestBody UserModel userModel) {
-        if (userService.existsByUsername(userModel.getUsername())) {
+    public ResponseEntity<UserModel> add(@RequestBody UserDto userDto) {
+        if (userService.existsByUsername(userDto.username())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        return ResponseEntity.ok(userService.save(userModel));
+
+        UserModel user = new UserModel();
+        user.setUsername(userDto.username());
+        return ResponseEntity.ok(userService.save(user));
     }
 
     @DeleteMapping("/delete/{id}")
