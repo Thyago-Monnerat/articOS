@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<UserModel> add(@RequestBody UserModel userModel) {
+    public ResponseEntity<UserModel> add(@RequestBody UserDto UserDto) {
         if (userService.existsByUsername(userModel.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
