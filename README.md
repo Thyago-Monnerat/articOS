@@ -3,10 +3,14 @@
 
 ### API RESTful para criação de artigos utilizando Java.
 
-Projeto realizado para um desafio da DIO.
+Projeto realizado para um desafio da DIO.  
+O projeto está documentado com OpenAPI e upado na Railway.  
+[Ir para a interface OpenAPI do projeto](https://articos-production.up.railway.app/swagger-ui/index.html)
+
+
 
 #### Funcionalidades:
-O projeto funciona com requisições simples de GET, POST e DELETE. Podendo adicionar um usuário e um artigo, também podendo remover cada um deles, buscar todos ou buscar por ID.
+O projeto funciona com requisições simples de **GET**, **POST** e **DELETE**. Podendo adicionar um usuário e um artigo, também podendo remover cada um deles, buscar todos ou buscar por ID.
 
 #
 
@@ -29,7 +33,18 @@ Para **artigos**:
 
 
 ###### ⛔Regras:
-    Usuários só podem ser aceitos se tiverem o username único.
-    Não pode haver 2 artigos com o mesmo nome, ou sem um usuário.
+- Usuários só podem ser aceitos se tiverem o username único.
+- Não pode haver 2 artigos com o mesmo nome, ou sem um usuário.
+- Para adicionar um usuário, use a estrutura:
+```json
+    {
+        "username":"string"
+    }
+```
+
+
+ 
 #
+
 **OBS:** Projeto feito apenas para o desafio, por isso não está tão complexo.
+
