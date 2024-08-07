@@ -21,7 +21,7 @@ public class UserModel {
     private UUID id;
     @Column(nullable = false, unique = true)
     private String username;
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<ArticleModel> articles;
 
 }
